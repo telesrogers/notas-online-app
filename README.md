@@ -1,133 +1,107 @@
-# School App - Sistema de Gerenciamento Escolar 🎓
+# Online Grades App 🎓
 
-Aplicativo React Native completo para gerenciamento escolar com integração à **API Notas Online**.
+React Native APP developed as part of the **Mobile Application Architecture** course, from the **Distributed Software Architecture** postgraduate program at **PUC Minas**.
+
+---
 
 ## ✨ Features
 
-- 🔐 Autenticação JWT completa
-- 🏫 Gerenciamento de Escolas
-- 👨‍🎓 Cadastro de Alunos
-- 📚 Gerenciamento de Disciplinas
-- 📊 Sistema de Notas e Médias
-- 👥 Gestão de Usuários (Admin/Professor)
+Mobile application developed using React Native, integrated with the [notas-online-api](https://github.com/telesrogers/notas-online-api) for student grade management. The application supports the creation, retrieval, and updating of academic records.
 
-## 🚀 Quick Start
+### Functionalities
+- 🔐 **JWT Authentication**: Secure login for Administrators and Teachers.
+- 🏫 **School Management**: Registration and maintenance of institution data.
+- 👨‍🏫 **Teacher Management**: Linking teachers to schools and subjects.
+- 👨‍🎓 **Student Management**: Complete control of academic records.
+- 📚 **Subject Management**: Configuration of subjects with personalized approval criteria.
+- 📊 **Grade System**: Grade posting with automatic calculation of averages and status (Approved, Recovery, Failed).
 
-### 1. Instalar dependências
+### Screens
+- **Home/Dashboard**: System overview.
+- **Login/Register**: Access and account creation.
+- **Students**: Listing and CRUD of students.
+- **Teachers**: Listing and CRUD of teachers.
+- **Subjects**: Management of subjects and workloads.
+- **Grades**: Posting and visualization of academic performance.
+- **Tests**: Dedicated screen for service validation and integration.
 
-```bash
-npm install
-```
+---
 
-### 2. Configurar API
+## 🚀 Technologies
 
-Copie o arquivo `.env.example` para `.env` e configure a URL:
+The project uses the following technologies and libraries:
 
-```bash
-cp .env.example .env
-```
+- **React Native** & **Expo**: Main framework for cross-platform development.
+- **TypeScript**: Static typing for greater safety and productivity.
+- **Tamagui**: UI framework for styled and responsive components.
+- **Axios**: HTTP client for consuming the Notas Online API.
+- **Expo Router**: File-based navigation.
+- **Lucide Icons**: Vector icon set.
+- **React Navigation**: Stack and tab navigation management.
 
-Edite o `.env`:
+---
 
-```bash
-EXPO_PUBLIC_API_BASE_URL=http://localhost:3000
-# Para Android Emulator: http://10.0.2.2:3000
-```
+## 📊 Data Structure
 
-### 3. Iniciar o app
+The main entities of the system are:
 
-```bash
-npx expo start
-```
+- **User**: Represents users (Admin/Teacher) with access to the system.
+- **School**: Educational institution to which all other data is linked.
+- **Teacher**: Professionals responsible for the subjects.
+- **Student**: Enrolled students.
+- **Subject**: Subjects that have average criteria and links to teachers.
+- **Grade**: Record of student grades, containing assessment history and final average.
 
-## 📦 Serviços da API
+---
 
-Todos os serviços necessários estão **100% implementados e prontos** em `src/`:
+## ⚙️ How to Run
 
-- ✅ **authService** - Login, registro, logout, perfil
-- ✅ **schoolService** - CRUD de escolas
-- ✅ **studentService** - CRUD de alunos  
-- ✅ **subjectService** - CRUD de disciplinas
-- ✅ **gradeService** - CRUD de notas + operações especiais
-- ✅ **userService** - CRUD de usuários
+### Prerequisites
 
-## 🧪 Tela de Testes
+Before you begin, you will need to have installed:
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Expo Go](https://expo.dev/go) on your phone or a configured emulator (Android/iOS)
 
-Uma tela completa de testes está disponível em `/test` para validar a integração:
+### Step by Step
 
-- ✅ Login com email e senha
-- ✅ Exibição de dados do usuário
-- ✅ Listagem de alunos
-- ✅ Logout
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-**Acesse**: Navegue para `/test` no app ou veja [TELA_TESTES.md](TELA_TESTES.md)
+2. **Configure API**
+   Copy the `.env.example` file to `.env` and configure the API URL:
+   ```bash
+   cp .env.example .env
+   ```
+   Edit the `.env`:
+   ```env
+   EXPO_PUBLIC_API_BASE_URL=http://localhost:3000
+   # For Android Emulator use: http://10.0.2.2:3000
+   ```
 
-## 📚 Documentação
+3. **Start the app**
+   ```bash
+   npx expo start
+   ```
 
-| Arquivo | Descrição |
-|---------|-----------|
-| 📘 **[START.md](START.md)** | **⭐ COMECE AQUI** - Guia visual rápido |
-| 🧪 **[TELA_TESTES.md](TELA_TESTES.md)** | Como usar a tela de testes |
-| ⚙️ **[ENV.md](ENV.md)** | Configuração de variáveis de ambiente |
-| 📗 **[INSTALACAO.md](INSTALACAO.md)** | Guia de instalação passo a passo |
-| 📙 **[ESTRUTURA.md](ESTRUTURA.md)** | Visão geral da arquitetura |
-| 📕 **[src/README.md](src/README.md)** | Documentação completa dos serviços |
-| 📓 **[src/examples.ts](src/examples.ts)** | 15+ exemplos práticos de uso |
-| 📔 **[src/tests.ts](src/tests.ts)** | Suite de testes de validação |
-| 📒 **[COMANDOS.md](COMANDOS.md)** | Comandos úteis para desenvolvimento |
-| 📖 **[RESUMO.md](RESUMO.md)** | Resumo executivo do projeto |
-| 📋 **[CHANGELOG.md](CHANGELOG.md)** | Histórico de mudanças |
+---
 
-## 🎯 Uso Rápido
+## 📂 Project Structure
 
-```typescript
-import { authService, studentService, useAuth } from '@/src';
+The folder organization follows the modern Expo pattern:
 
-// Login
-await authService.login({ 
-  email: 'usuario@email.com', 
-  password: 'senha123' 
-});
-
-// Listar alunos
-const students = await studentService.getAll();
-
-// Usar hook de autenticação
-function MyComponent() {
-  const { user, signIn, signOut, isAuthenticated } = useAuth();
-  // ...
-}
-```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `app/`: Contains the application routes and screens (Expo Router).
+  - `(app)/`: Screens protected by authentication.
+  - `auth/`: Login and registration screens.
+- `assets/`: Static resources such as images and fonts.
+- `components/`: Reusable React components.
+- `constants/`: Theme, color, and constant value configurations.
+- `hooks/`: Custom hooks for shared logic.
+- `src/`: Core application logic.
+  - `services/`: API calls and service logic.
+  - `types/`: TypeScript interfaces and types.
+  - `contexts/`: Global state providers (e.g., AuthContext).
+  - `storage/`: Local data persistence (Token Storage).
+- `scripts/`: Auxiliary development scripts.
